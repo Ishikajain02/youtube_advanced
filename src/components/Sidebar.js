@@ -3,14 +3,12 @@ import React from 'react'
 const Sidebar = () => {
   return (
     <>
-    <div>
-        <div className="p-7 flex flex-row ">
-        🏠 Home
-        📽 Shorts
-        📷 Subscription
+    <div className="flex flex-col">
+        <div className="p-7 flex flex-col">
+         Home
         </div>
-        <div>
-        
+        <div className='p-7 '>
+        Shorts
         </div>
         <div>
         
