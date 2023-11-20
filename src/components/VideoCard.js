@@ -1,11 +1,20 @@
  const VideoCard = ({info})=>{
+    const {snippet ,statistics} = info;
+    const {thumbnails, title ,channelTitle} = snippet;
+    console.log(info);
     return(
         <>
-          <div className="border border-solid w-80 h-60">
-  {/* <h1>{videocard?.items[0]?.snippet?.title}</h1>8*/}
-    <h1 className="font text-sm">{info?.snippet?.title}</h1>
-    <img className="w-20 h-40 "src={info?.snippet?.thumbnails?.high?.url}/>
-   </div>
+       
+        
+          <div className="shadow-lg w-72 m-2 p-2">
+          <img className src={thumbnails?.medium?.url}/>
+         <ul>
+         <li className="font-bold p-2">{title}</li>
+            <li >{channelTitle}</li>
+            <li>{statistics.viewCount}Views</li>
+         </ul>
+   
+    </div>
    </>
     )
  }

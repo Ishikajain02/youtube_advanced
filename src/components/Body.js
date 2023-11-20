@@ -6,10 +6,10 @@ const Body = () => {
   return (
     <>
     <div className='grid grid-cols-12'>
-    <div className='cols col-span-3'>
+    <div className='cols col-span-2'>
     <Sidebar/>
     </div>
-    <div className='cols col-span-9'>
+    <div className='cols col-span-10'>
       <ButtonList/>
     <Videocontainer/>
     </div>
