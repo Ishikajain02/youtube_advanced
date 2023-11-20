@@ -7,7 +7,7 @@
        
         
           <div className="shadow-lg w-72 m-2 p-2">
-          <img className src={thumbnails?.medium?.url}/>
+          <img className alt="thumbnails" src={thumbnails?.medium?.url}/>
          <ul>
          <li className="font-bold p-2">{title}</li>
             <li >{channelTitle}</li>

@@ -1,18 +1,15 @@
 import React from 'react'
 import Sidebar from './Sidebar'
-import Videocontainer from './Videocontainer'
-import ButtonList from './ButtonList'
+
+import MainContainer from './MainContainer'
+import { Outlet } from 'react-router-dom'
 const Body = () => {
   return (
     <>
-    <div className='grid grid-cols-12'>
-    <div className='cols col-span-2'>
+    <div className='flex'>
+  
     <Sidebar/>
-    </div>
-    <div className='cols col-span-10'>
-      <ButtonList/>
-    <Videocontainer/>
-    </div>
+    <Outlet/>
     </div>
     </>
   )
