@@ -39,6 +39,11 @@ const Head = () => {
       <button className="h-12 bg-gray-200 py-3 px-7 w-14 rounded-r-3xl">
       🔍
       </button>
+      <div className=''>
+        <ul>
+          <li>hiii</li>
+        </ul>
+      </div>
     
     </div>
     <div className="cols col-span-3 ">
