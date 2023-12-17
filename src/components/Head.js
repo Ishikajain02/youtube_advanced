@@ -4,16 +4,20 @@ import { toggleMenu } from '../utils/appSlices';
 
 const Head = () => {
    const dispatch = useDispatch();
-   const[searchquery ,setsearchquery]=useState("");
+   const[searchquery ,setsearchquery]=useState([]);
+   const[suggestion,setsuggestion]=useState([]);
    const toggleMenuHandler = ()=>{
     dispatch(toggleMenu());
    }
    const  search = async ()=>{
-    const data = await fetch("https://www.googleapis.com/youtube/v3/search?key=AIzaSyChlI_oQ9vEBT_VB7xzLlyNSfxK5rv8Kco%20&q="+ searchquery);
+    const data = await fetch("http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q="+ searchquery);
    //hide api keys and api
     const json = await data.json();
     console.log("api");
-    console.log(json);
+    console.log(json[1]);
+    //setsearchquery(json[1]);  
+    setsuggestion(json[1]);
+    
 }
    useEffect(()=>{
     const timer =setTimeout(()=>search(),200);
@@ -24,8 +28,8 @@ const Head = () => {
    },[searchquery]);
    
    return(
-  <div className=" grid grid-cols-12 gap-4 shadow-md p-4">
-    <div className="cols col-span-3 flex flex-row ">
+  <div className=" grid grid-cols-12 gap-4 shadow-md p-4 ">
+    <div className="cols col-span-3 flex flex-row  ">
       
       <img onClick={()=>toggleMenuHandler()}className="h-8 w-8 cursor-pointer " alt="youtube" src="https://cdn.iconscout.com/icon/free/png-256/free-hamburger-menu-462145.png?f=webp"></img>
       
@@ -39,6 +43,11 @@ const Head = () => {
       <button className="h-12 bg-gray-200 py-3 px-7 w-14 rounded-r-3xl">
       🔍
       </button>
+      <div className='absolute  shadow-2xl mt-12 w-5/12 bg-white'>
+      {suggestion.map(((e,index)=>
+      
+      <ul key={index} className=' p-2'>🔎 {e}</ul>))}
+    </div>
       <div className=''>
         <ul>
           <li>hiii</li>
@@ -49,8 +58,11 @@ const Head = () => {
     <div className="cols col-span-3 ">
       yoooo
     </div>
+    
   </div>
+  
    )
 }
 
 export default Head;
+//try to make grid with fixed
