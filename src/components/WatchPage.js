@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { closeMenu } from "../utils/appSlices";
 import { useSearchParams } from "react-router-dom";
+import CommentContainer from "./CommentContainer";
 const WatchPage = () => {
   const dispatch = useDispatch();
   const [serachParams] = useSearchParams();
@@ -10,7 +11,7 @@ const WatchPage = () => {
     dispatch(closeMenu());
   }, []);
   return (
-    <>
+    <div className="flex flex-col">
       <iframe
         width="1000"
         height="500"
@@ -20,7 +21,8 @@ const WatchPage = () => {
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowFullScreen
       ></iframe>
-    </>
+      <CommentContainer/>
+    </div>
   );
 };
 export default WatchPage;
