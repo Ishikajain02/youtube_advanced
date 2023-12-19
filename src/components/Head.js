@@ -1,11 +1,15 @@
 import React,{useState,useEffect} from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toggleMenu } from '../utils/appSlices';
+import { cacheresults } from '../utils/searchslice';
 
 const Head = () => {
    const dispatch = useDispatch();
    const[searchquery ,setsearchquery]=useState([]);
    const[suggestion,setsuggestion]=useState([]);
+   const[showsuggestion,setshowsuggestion]=useState(false);
+   const cache = useSelector((store)=>store.search);
+   
    const toggleMenuHandler = ()=>{
     dispatch(toggleMenu());
    }
@@ -17,10 +21,25 @@ const Head = () => {
     console.log(json[1]);
     //setsearchquery(json[1]);  
     setsuggestion(json[1]);
+   dispatch(cacheresults({
+    [searchquery]:json[1]
+   }))
     
 }
    useEffect(()=>{
-    const timer =setTimeout(()=>search(),200);
+    const timer =setTimeout(()=>
+    {
+         if(cache[searchquery]){
+          setsuggestion(cache[searchquery]);
+         }
+         else {
+          search();
+
+         }
+    }
+    
+    
+   ,200);
       // search();
  return ()=>{
   clearTimeout(timer);
@@ -39,14 +58,15 @@ const Head = () => {
     </div>
     
       <div className=' cols col-span-6 flex flex-row'>
-      <input type="search" value={searchquery} onChange={(e)=>{setsearchquery(e.target.value)}}placeholder="Search " className="border-b-2 w-11/12 rounded-l-3xl  border-gray-200 py-3 px-7"></input>
+      <input type="search" value={searchquery} onChange={(e)=>{setsearchquery(e.target.value)}}placeholder="Search "
+      onFocus={()=>setshowsuggestion(true)} onBlur={()=>setshowsuggestion(false)}className="border-b-2 w-11/12 rounded-l-3xl  border-gray-200 py-3 px-7"></input>
       <button className="h-12 bg-gray-200 py-3 px-7 w-14 rounded-r-3xl">
       🔍
       </button>
       <div className='absolute  shadow-2xl mt-12 w-5/12 bg-white'>
-      {suggestion.map(((e,index)=>
+      {showsuggestion && suggestion.map(((e,index)=>
       
-      <ul key={index} className=' p-2'>🔎 {e}</ul>))}
+      <ul key={index} className=' p-2 hover:bg-gray-100'>🔎 {e}</ul>))}
     </div>
       <div className=''>
         <ul>
