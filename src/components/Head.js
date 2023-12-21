@@ -68,6 +68,7 @@ const Head = () => {
       
       <ul key={index} className=' p-2 hover:bg-gray-100'>🔎 {e}</ul>))}
     </div>
+    {/*add functionality of searching from suggestions*/}
       <div className=''>
         <ul>
           <li>hiii</li>

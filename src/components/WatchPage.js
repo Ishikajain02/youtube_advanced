@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { closeMenu } from "../utils/appSlices";
 import { useSearchParams } from "react-router-dom";
 import CommentContainer from "./CommentContainer";
+import LiveChat from "./LiveChat";
 const WatchPage = () => {
   const dispatch = useDispatch();
   const [serachParams] = useSearchParams();
@@ -11,7 +12,9 @@ const WatchPage = () => {
     dispatch(closeMenu());
   }, []);
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col w-full">
+      <div className="flex w-full">
+      <div>
       <iframe
         width="1000"
         height="500"
@@ -20,8 +23,14 @@ const WatchPage = () => {
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowFullScreen
-      ></iframe>
+      ></iframe></div>
+      <div className="bg-slate-200 border border-black w-full p-2 ml-1 h-[500]">
+      <LiveChat/>
+      </div>
+      </div>
       <CommentContainer/>
+      
+      
     </div>
   );
 };
