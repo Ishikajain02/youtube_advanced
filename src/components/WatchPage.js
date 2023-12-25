@@ -24,7 +24,7 @@ const WatchPage = () => {
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowFullScreen
       ></iframe></div>
-      <div className="bg-slate-200 border border-black w-full p-2 ml-1 h-[500]">
+      <div className="w-full">
       <LiveChat/>
       </div>
       </div>
