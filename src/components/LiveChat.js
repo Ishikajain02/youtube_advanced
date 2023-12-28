@@ -14,7 +14,7 @@ const LiveChat=()=>{
             name:generate(),
             message:generateRandomText(20),
            }));
-       },500);
+       },5000);
       
        return ()=>clearInterval(timer);
     },  [])
