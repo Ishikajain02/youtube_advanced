@@ -14,7 +14,7 @@ const Head = () => {
     dispatch(toggleMenu());
    }
    const  search = async ()=>{
-    const data = await fetch("http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q="+ searchquery);
+    const data = await fetch("https://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q="+ searchquery);
    //hide api keys and api
     const json = await data.json();
     console.log("api");
